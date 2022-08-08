@@ -1,15 +1,24 @@
-# Proyecto final: Entrega 2 - Rombolá Julián.
+# Proyecto final: Entrega 3 - Rombolá Julián.
 
 ## Cambios
-### Módulos
-Se crearon tres nuevos módulos:
-1. **Core:** Incluye los componenes "comunes" (*TopBar* y *Main*)
-2. **ABM:** Incluye los componentes específicos para las funcionalidades de Alta, baja y modificación de alumnos (*FormAlta* y *ListadoAlumnos*).
-3. **Shared:** Incluye componentes genéricos reutilizados en distintos lugares (componentes de *Material*, pipes, directivas).
+### Login
+Para acceder a las funcionalidades existen 2 tipos de usuarios.
+1. **Común:** Sólo puede ver el listado de alumnos, sin posibilidad de hacer cambios.
+2. **Admin:** Puede hacer cambios sobre los alumnos (ABM).
 
-### Servicios
-En la versión anterior la lógica para el ABM de los alumnos se encontraba en el componente *Main*. 
-Ahora se creó el servicio **AlumnosService** que concentra esta lógica, siendo utilizado desde los demás componentes que requieren la modificación de datos.
+La pass para ambos tipos de usuarios es: **1234**.
+- Para acceder como Administrador, el nombre de usuario es "Admin".
+- Para acceder como usuario común, el nombre de usuario es indiferente (Sólo valida la pass).
 
-### Routing
-Ya no se utilizan variables para mostrar distintos componentes, sino que la navegación lateral hace cambio de rutas.
+### ABM
+La modificación de datos se hace directamente sobre la REST API. Es decir, al dar de alta un alumno se hace un POST, al eliminar se hace un DELETE, al consultar se hace un GET.
+
+Todo esto se hace desde el servicio: **AlumnosService**.
+
+### Guards
+El acceso a las distintas rutas se hace validando el logueo/tipo de usuario.
+
+### Tests
+Se agregaron test para:
+- Servicio Auth: _auth.service.spec_
+- Listado de Alumnos: _listado-alumnos.component.spec_
